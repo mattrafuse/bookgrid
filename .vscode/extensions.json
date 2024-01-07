@@ -3,6 +3,8 @@
         "ms-python.mypy-type-checker",
         "ms-python.vscode-pylance",
         "ms-python.python",
-        "davidanson.vscode-markdownlint"
+        "davidanson.vscode-markdownlint",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
     ]
 }
