@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   AppBar,
   Box,
+  Button,
   Container,
   IconButton,
   Stack,
@@ -21,6 +22,13 @@ const TABS: TabsType[] = ['today', 'yesterday', 'archived'];
 
 function App() {
   const [tab, setTab] = useState<TabsType>('today');
+
+  const grid_boxes = [];
+  for (let i = 0; i < 9; i++){
+    grid_boxes.push(
+        <Button key={i}></Button>
+    );
+  }
 
   return (
     <>
@@ -74,8 +82,9 @@ function App() {
             border: '3px solid black',
             borderRadius: theme.shape.borderRadius,
             overflow: 'hidden',
-            '& > div': {
+            '& > button': {
               backgroundColor: 'grey',
+              borderRadius: "0px",
               '&:not(:nth-child(3n))': {
                 borderRight: 'thin solid black',
               },
@@ -85,15 +94,7 @@ function App() {
             },
           })}
         >
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
+          {grid_boxes}
         </Box>
       </Container>
       <footer>
