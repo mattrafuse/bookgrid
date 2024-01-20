@@ -2,17 +2,17 @@ import { useState } from 'react';
 import {
   AppBar,
   Box,
-  Button,
+  // Button,
   Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
+  // Dialog,
+  // DialogActions,
+  // DialogContent,
+  // DialogTitle,
   IconButton,
   Stack,
   Tab,
   Tabs,
-  TextField,
+  // TextField,
   Toolbar,
   Typography,
   alpha,
@@ -21,6 +21,8 @@ import {
 import Refresh from '@mui/icons-material/Refresh';
 import { brown } from '@mui/material/colors';
 
+import gridButton from './components/GridButton';
+
 type TabsType = 'today' | 'yesterday' | 'archived';
 
 const TABS: TabsType[] = ['today', 'yesterday', 'archived'];
@@ -28,43 +30,6 @@ const TABS: TabsType[] = ['today', 'yesterday', 'archived'];
 function App() {
   const [tab, setTab] = useState<TabsType>('today');
 
-  function CreateButton(i: number){
-    const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-
-    const handleClose = () => {
-      setOpen(false);
-    };
-
-    return(
-      <>
-        <Button onClick={handleClickOpen} key={i}></Button>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          fullWidth
-        >
-          <DialogTitle>Enter your guess</DialogTitle>
-          <DialogContent>
-            <TextField
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button type="submit">Submit</Button>
-          </DialogActions>
-        </Dialog>
-      </>
-    );
-  }
-
-  const grid_boxes = [];
-  for (let i = 0; i < 9; i++){
-    grid_boxes.push(CreateButton(i));
-  }
 
   return (
     <>
@@ -130,7 +95,7 @@ function App() {
             },
           })}
         >
-          {grid_boxes}
+          {[...Array(9).keys()].map(entry => gridButton(entry))}
         </Box>
       </Container>
       <footer>
