@@ -8,7 +8,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const GridButton = (i: number) => {
+const GridButton = () => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = useCallback(() => setOpen(true), []);
@@ -17,7 +17,7 @@ const GridButton = (i: number) => {
 
     return(
       <>
-        <Button onClick={handleOpen} key={i}></Button>
+        <Button onClick={handleOpen}/>
         <Dialog
           open={open}
           onClose={handleClose}

@@ -2,17 +2,11 @@ import { useState } from 'react';
 import {
   AppBar,
   Box,
-  // Button,
   Container,
-  // Dialog,
-  // DialogActions,
-  // DialogContent,
-  // DialogTitle,
   IconButton,
   Stack,
   Tab,
   Tabs,
-  // TextField,
   Toolbar,
   Typography,
   alpha,
@@ -21,7 +15,7 @@ import {
 import Refresh from '@mui/icons-material/Refresh';
 import { brown } from '@mui/material/colors';
 
-import gridButton from './components/GridButton';
+import GridButton from './components/GridButton';
 
 type TabsType = 'today' | 'yesterday' | 'archived';
 
@@ -95,7 +89,7 @@ function App() {
             },
           })}
         >
-          {[...Array(9).keys()].map(entry => gridButton(entry))}
+          {[...Array(9).keys()].map(entry => <GridButton key={entry}/>)}
         </Box>
       </Container>
       <footer>
