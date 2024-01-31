@@ -15,12 +15,15 @@ import {
 import Refresh from '@mui/icons-material/Refresh';
 import { brown } from '@mui/material/colors';
 
+import GridButton from './components/GridButton';
+
 type TabsType = 'today' | 'yesterday' | 'archived';
 
 const TABS: TabsType[] = ['today', 'yesterday', 'archived'];
 
 function App() {
   const [tab, setTab] = useState<TabsType>('today');
+
 
   return (
     <>
@@ -74,8 +77,9 @@ function App() {
             border: '3px solid black',
             borderRadius: theme.shape.borderRadius,
             overflow: 'hidden',
-            '& > div': {
+            '& > button': {
               backgroundColor: 'grey',
+              borderRadius: "0px",
               '&:not(:nth-child(3n))': {
                 borderRight: 'thin solid black',
               },
@@ -85,15 +89,7 @@ function App() {
             },
           })}
         >
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
-          <Box></Box>
+          {[...Array(9).keys()].map(entry => <GridButton key={entry}/>)}
         </Box>
       </Container>
       <footer>
