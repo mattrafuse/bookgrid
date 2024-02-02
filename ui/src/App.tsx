@@ -95,26 +95,36 @@ function App() {
 
           {/* Instead of hardcoding the titles, we can reuse */}
           {CATEGORIES.map((category, index) => (
-            <Typography
-              key={category}
-              variant="body1"
-              sx={{ textAlign: 'center', gridColumn: 3 + index }}
+            <Box
+              sx={{
+                textAlign: 'center',
+                gridColumn: 3 + index,
+                display: 'flex',
+                alignItems: 'end',
+                justifyContent: 'center',
+                p: 1,
+              }}
             >
-              {category}
-            </Typography>
+              <Typography key={category} variant="body1">
+                {category}
+              </Typography>
+            </Box>
           ))}
           {AUTHORS.map(author => (
-            <Typography
-              key={author}
-              height="200px"
-              variant="body1"
+            <Box
               sx={{
                 textAlign: 'center',
                 gridColumn: '2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'end',
+                p: 1,
               }}
             >
-              {author}
-            </Typography>
+              <Typography key={author} variant="body1">
+                {author}
+              </Typography>
+            </Box>
           ))}
 
           {/* The actual buttons */}
