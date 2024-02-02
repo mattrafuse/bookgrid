@@ -30,28 +30,37 @@ const GridButton: FC<{ index: number }> = ({ index }) => {
             borderRadius: '0px',
             border: 'thin solid black',
           },
+          // apply styling specific to border squares
           index % 3 === 0 && {
+            // left side
             borderLeft: '3px solid black',
           },
           index % 3 === 2 && {
+            // right side
             borderRight: '3px solid black',
           },
           index < 3 && {
+            // top side
             borderTop: '3px solid black',
           },
           index > 5 && {
+            // bottom side
             borderBottom: '3px solid black',
           },
           index === 0 && {
+            // top left suqare
             borderTopLeftRadius: theme.shape.borderRadius,
           },
           index === 2 && {
+            // top right suqare
             borderTopRightRadius: theme.shape.borderRadius,
           },
           index === 6 && {
+            // bottom left square
             borderBottomLeftRadius: theme.shape.borderRadius,
           },
           index === 8 && {
+            // bottom right square
             borderBottomRightRadius: theme.shape.borderRadius,
           },
         ]}

@@ -79,6 +79,8 @@ function App() {
         <Box
           sx={{
             display: 'grid',
+            // We can use a larger CSS grid to better position elements
+            // https://css-tricks.com/snippets/css/complete-guide-grid/
             gridTemplateColumns: '1fr repeat(5, 200px) 1fr',
           }}
         >
@@ -90,6 +92,8 @@ function App() {
               Explanation stuff
             </Typography>
           </Stack>
+
+          {/* Instead of hardcoding the titles, we can reuse */}
           {CATEGORIES.map((category, index) => (
             <Typography
               key={category}
@@ -99,7 +103,6 @@ function App() {
               {category}
             </Typography>
           ))}
-
           {AUTHORS.map(author => (
             <Typography
               key={author}
@@ -114,6 +117,7 @@ function App() {
             </Typography>
           ))}
 
+          {/* The actual buttons */}
           {[...Array(9).keys()].map(entry => (
             <GridButton key={entry} index={entry} />
           ))}
@@ -126,7 +130,8 @@ function App() {
           sx={{ textAlign: 'center', p: 1 }}
         >
           <Typography variant="caption" color="text.secondary">
-            Created By: R.J. Arsenault, Alex Kerzner and Matthew Rafuse
+            {/* fite me rj */}
+            Created By: Alex Kerzner and Matthew Rafuse
           </Typography>
           <Typography variant="caption" color="text.secondary">
             Copyright 2024
