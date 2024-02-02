@@ -21,9 +21,20 @@ type TabsType = 'today' | 'yesterday' | 'archived';
 
 const TABS: TabsType[] = ['today', 'yesterday', 'archived'];
 
+const AUTHORS = [
+  'Author',
+  'Some other author with a super-duper multi-line name',
+  'One more author',
+];
+
+const CATEGORIES = [
+  'A category',
+  'Some other category',
+  'Looooooooong looooooong multi-line category',
+];
+
 function App() {
   const [tab, setTab] = useState<TabsType>('today');
-
 
   return (
     <>
@@ -64,50 +75,50 @@ function App() {
           </Stack>
         </Toolbar>
       </AppBar>
-        <Container sx={{ py: 2, flex: 1}}>
-          <Typography variant="h4" sx = {{textAlign: 'center'}}>Hello</Typography>
-          <Typography variant="body1" sx = {{textAlign: 'center'}}>Explanation stuff</Typography>
-          <Stack alignItems='center'>
-            <Stack direction='row' alignItems={'center'}>
-              <Typography variant="body1" sx={{textAlign:'center', width:'200px'}}>A category</Typography>
-              <Typography variant="body1" sx={{textAlign:'center', width:'200px'}}>Some other category</Typography>
-              <Typography variant="body1" sx={{textAlign:'center', width:'200px'}}>Looooooooong looooooong multi-line category</Typography>
-            </Stack>
-            <Stack direction='row'>
-              <Stack width='200px' alignItems='center'>
-                <Typography height='200px' variant="body1" sx={{textAlign:'center', alignItems:'center', display:'flex'}}>Author</Typography>
-                <Typography height='200px' variant="body1" sx={{textAlign:'center', alignItems:'center', display:'flex'}}>Some other author with a super-duper multi-line name</Typography>
-                <Typography height='200px' variant="body1" sx={{textAlign:'center', alignItems:'center', display:'flex'}}>One more author</Typography>
-              </Stack>
-              <Box
-                sx={theme => ({
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr',
-                  gridAutoRows: '1fr',
-                  width: '600px',
-                  height: '600px',
-                  border: '3px solid black',
-                  borderRadius: theme.shape.borderRadius,
-                  overflow: 'hidden',
-                  '& > button': {
-                    backgroundColor: 'grey',
-                    borderRadius: "0px",
-                    '&:not(:nth-child(3n))': {
-                      borderRight: 'thin solid black',
-                    },
-                    '&:nth-child(-n+6)': {
-                      borderBottom: 'thin solid black',
-                    },
-                  },
-                })}
-              >
-                {[...Array(9).keys()].map(entry => <GridButton key={entry}/>)}
-              </Box>
-              {/* Dummy box to take up space: */}
-              <Box height='600px' width='200px'/> 
-            </Stack>
+      <Container sx={{ py: 2, flex: 1 }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr repeat(5, 200px) 1fr',
+          }}
+        >
+          <Stack sx={{ gridColumn: '2 / span 5' }} alignItems="center">
+            <Typography variant="h4" sx={{ textAlign: 'center' }}>
+              Hello
+            </Typography>
+            <Typography variant="body1" sx={{ textAlign: 'center' }}>
+              Explanation stuff
+            </Typography>
           </Stack>
-        </Container>
+          {CATEGORIES.map((category, index) => (
+            <Typography
+              key={category}
+              variant="body1"
+              sx={{ textAlign: 'center', gridColumn: 3 + index }}
+            >
+              {category}
+            </Typography>
+          ))}
+
+          {AUTHORS.map(author => (
+            <Typography
+              key={author}
+              height="200px"
+              variant="body1"
+              sx={{
+                textAlign: 'center',
+                gridColumn: '2',
+              }}
+            >
+              {author}
+            </Typography>
+          ))}
+
+          {[...Array(9).keys()].map(entry => (
+            <GridButton key={entry} index={entry} />
+          ))}
+        </Box>
+      </Container>
       <footer>
         <Stack
           spacing={1}
