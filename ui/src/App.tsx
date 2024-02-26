@@ -21,9 +21,20 @@ type TabsType = 'today' | 'yesterday' | 'archived';
 
 const TABS: TabsType[] = ['today', 'yesterday', 'archived'];
 
+const AUTHORS = [
+  'Author',
+  'Some other author with a super-duper multi-line name',
+  'One more author',
+];
+
+const CATEGORIES = [
+  'A category',
+  'Some other category',
+  'Looooooooong looooooong multi-line category',
+];
+
 function App() {
   const [tab, setTab] = useState<TabsType>('today');
-
 
   return (
     <>
@@ -64,50 +75,64 @@ function App() {
           </Stack>
         </Toolbar>
       </AppBar>
-        <Container sx={{ py: 2, flex: 1}}>
-          <Typography variant="h4" sx = {{textAlign: 'center'}}>Hello</Typography>
-          <Typography variant="body1" sx = {{textAlign: 'center'}}>Explanation stuff</Typography>
-          <Stack alignItems='center'>
-            <Stack direction='row' alignItems={'center'}>
-              <Typography variant="body1" sx={{textAlign:'center', width:'200px'}}>A category</Typography>
-              <Typography variant="body1" sx={{textAlign:'center', width:'200px'}}>Some other category</Typography>
-              <Typography variant="body1" sx={{textAlign:'center', width:'200px'}}>Looooooooong looooooong multi-line category</Typography>
-            </Stack>
-            <Stack direction='row'>
-              <Stack width='200px' alignItems='center'>
-                <Typography height='200px' variant="body1" sx={{textAlign:'center', alignItems:'center', display:'flex'}}>Author</Typography>
-                <Typography height='200px' variant="body1" sx={{textAlign:'center', alignItems:'center', display:'flex'}}>Some other author with a super-duper multi-line name</Typography>
-                <Typography height='200px' variant="body1" sx={{textAlign:'center', alignItems:'center', display:'flex'}}>One more author</Typography>
-              </Stack>
-              <Box
-                sx={theme => ({
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr',
-                  gridAutoRows: '1fr',
-                  width: '600px',
-                  height: '600px',
-                  border: '3px solid black',
-                  borderRadius: theme.shape.borderRadius,
-                  overflow: 'hidden',
-                  '& > button': {
-                    backgroundColor: 'grey',
-                    borderRadius: "0px",
-                    '&:not(:nth-child(3n))': {
-                      borderRight: 'thin solid black',
-                    },
-                    '&:nth-child(-n+6)': {
-                      borderBottom: 'thin solid black',
-                    },
-                  },
-                })}
-              >
-                {[...Array(9).keys()].map(entry => <GridButton key={entry}/>)}
-              </Box>
-              {/* Dummy box to take up space: */}
-              <Box height='600px' width='200px'/> 
-            </Stack>
+      <Container sx={{ py: 2, flex: 1 }}>
+        <Box
+          sx={{
+            display: 'grid',
+            // We can use a larger CSS grid to better position elements
+            // https://css-tricks.com/snippets/css/complete-guide-grid/
+            gridTemplateColumns: '1fr repeat(5, 200px) 1fr',
+          }}
+        >
+          <Stack sx={{ gridColumn: '2 / span 5' }} alignItems="center">
+            <Typography variant="h4" sx={{ textAlign: 'center' }}>
+              Hello
+            </Typography>
+            <Typography variant="body1" sx={{ textAlign: 'center' }}>
+              Explanation stuff
+            </Typography>
           </Stack>
-        </Container>
+
+          {/* Instead of hardcoding the titles, we can reuse */}
+          {CATEGORIES.map((category, index) => (
+            <Box
+              sx={{
+                textAlign: 'center',
+                gridColumn: 3 + index,
+                display: 'flex',
+                alignItems: 'end',
+                justifyContent: 'center',
+                p: 1,
+              }}
+            >
+              <Typography key={category} variant="body1">
+                {category}
+              </Typography>
+            </Box>
+          ))}
+          {AUTHORS.map(author => (
+            <Box
+              sx={{
+                textAlign: 'center',
+                gridColumn: '2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: 1,
+              }}
+            >
+              <Typography key={author} variant="body1">
+                {author}
+              </Typography>
+            </Box>
+          ))}
+
+          {/* The actual buttons */}
+          {[...Array(9).keys()].map(entry => (
+            <GridButton key={entry} index={entry} />
+          ))}
+        </Box>
+      </Container>
       <footer>
         <Stack
           spacing={1}
@@ -115,7 +140,8 @@ function App() {
           sx={{ textAlign: 'center', p: 1 }}
         >
           <Typography variant="caption" color="text.secondary">
-            Created By: R.J. Arsenault, Alex Kerzner and Matthew Rafuse
+            {/* fite me rj */}
+            Created By: Alex Kerzner and Matthew Rafuse
           </Typography>
           <Typography variant="caption" color="text.secondary">
             Copyright 2024
