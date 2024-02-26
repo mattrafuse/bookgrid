@@ -117,7 +117,7 @@ function App() {
                 gridColumn: '2',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'end',
+                justifyContent: 'center',
                 p: 1,
               }}
             >
